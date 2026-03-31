@@ -1,5 +1,4 @@
 build/
-
 *.o
 *.out
 *.exe
@@ -9,20 +8,22 @@ build/
 .venv/
 venv/
 env/
-
 __pycache__/
 *.pyc
 *.pyo
 
-benchmarking/results/csv/*.csv
-benchmarking/results/png/*.png
+
+benchmarking/results/csv/*
+benchmarking/results/png/*
+
+!benchmarking/results/csv/.gitkeep
+!benchmarking/results/png/.gitkeep
 
 sequential_benchmark.txt
 concurrent_benchmark.txt
+benchmarking/results/cache_stats.txt
 
 .DS_Store
-
 Thumbs.db
-
 .vscode/
 .idea/

@@ -1,5 +1,7 @@
 #include "mergesort.hpp"
 
+thread_local double local_merge_time = 0.0;
+
 template<typename T>
 void ConcurrentMergeSorter<T>::sort(std::vector<T> &nums) {
     if(nums.empty() || nums.size() == 1) return;
@@ -26,6 +28,7 @@ void ConcurrentMergeSorter<T>::merge(std::vector<T> &nums, int left, int right) 
 
 template<typename T>
 void ConcurrentMergeSorter<T>::mergesort(std::vector<T> &nums, int left, int right) {
+    auto start = std::chrono::high_resolution_clock::now();
     if(right <= left) return;
     int mid = left + (right - left) / 2;
     
@@ -38,8 +41,6 @@ void ConcurrentMergeSorter<T>::mergesort(std::vector<T> &nums, int left, int rig
             t2 = std::thread(ConcurrentMergeSorter<T>::mergesort, std::ref(nums), mid + 1, right);
             t2_started = true;
         } catch (const std::system_error& e) {
-            std::cerr << "error creating threads: " << e.what() << '\n';
-            exit(1);
         }
 
         if (t1_started) {
@@ -59,4 +60,7 @@ void ConcurrentMergeSorter<T>::mergesort(std::vector<T> &nums, int left, int rig
     }
 
     merge(nums, left, right);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    local_merge_time += duration.count();
 }

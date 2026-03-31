@@ -13,8 +13,13 @@
 namespace fs = std::filesystem;
 
 int main() {
-    std::vector<int> sizes = {100000, 500000, 1000000, 5000000};
-    std::vector<int> thresholds = {1000, 5000, 10000, 50000, 100000};
+    // std::vector<int> sizes = {100000, 500000, 1000000, 5000000};
+    // std::vector<int> thresholds = {1000, 5000, 10000, 50000, 100000};
+
+    std::vector<int> sizes = {0, 1, 2,1000, 10000,65536, 1048576,100000, 500000, 1000000,10000000, 50000000 };
+
+    std::vector<int> thresholds = {10, 100,1024, 8192, 16384,50000, 100000, 500000,5000000, 10000000};
+    
 
     std::string results_dir = "benchmarking/results/csv";
     if (!fs::exists(results_dir)) {
@@ -56,6 +61,11 @@ int main() {
         double t_seq = seqDuration.count();
 
         for (int thresh : thresholds) {
+            if ((SIZE / thresh) > 10000) {
+                std::cout << "Skipping Concurrent Sort (Threshold: " << thresh 
+                          << ") for size " << SIZE << " -> Exceeds safe thread limit." << std::endl;
+                continue; 
+            }
             ConcurrentMergeSorter<int>::THRESHOLD = thresh;
 
             std::cout << "Running Concurrent Sort (Threshold: " << thresh << ")..." << std::endl;
