@@ -9,7 +9,8 @@ This project implements a high-performance Concurrent Merge Sort in C++17. It in
 1. [System Requirements & Installation](#1-system-requirements--installation)
 2. [Execution Commands](#2-execution-commands)
 3. [Performance Comparison: Sequential vs. Concurrent](#3-performance-comparison-sequential-vs-concurrent)
-4. [Directory Structure](#4-directory-structure)
+4. [CPU Utilization](#4-cpu-utilization)
+5. [Directory Structure](#5-directory-structure)
 
 ---
 
@@ -73,12 +74,50 @@ The table below summarizes the performance gains observed during the latest benc
 | 1,000,000 | 0.091537 | 0.015974 | 5.73x | 82.54% |
 | 10,000,000 | 0.950563 | 0.112226 | 8.06x | 87.59% |
 | 50,000,000 | 4.782103 | 0.714785 | 6.69x | 85.05% |
+
+> **Data source:** `bench_20260401_044334.csv`
+
+### Speed Comparison
+
+![Speed Comparison](assets/01_Speed_Comparison.png)
+
+### Speedup Multiplier
+
+![Speedup Multiplier](assets/02_Speedup_Multiplier.png)
+
+### Optimal Chunk Size
+
+![Optimal Chunk Size](assets/03_Optimal_Chunk_Size.png)
+
+### Time Saved (%)
+
+![Time Saved Percent](assets/04_Time_Saved_Percent.png)
+
+### Heavy Workload Bar Chart
+
+![Bar Chart Heavy Workloads](assets/05_Bar_Chart_Heavy_Workloads.png)
+
 ---
 
-## 4. Directory Structure
+## 4. CPU Utilization
+
+Real-time CPU utilization captured during a concurrent benchmark run.
+
+![CPU Utilization](assets/CPU_Utilization.png)
+
+---
+
+## 5. Directory Structure
 
 ```
 .
+├── assets/                           # Benchmark visualizations
+│   ├── 01_Speed_Comparison.png
+│   ├── 02_Speedup_Multiplier.png
+│   ├── 03_Optimal_Chunk_Size.png
+│   ├── 04_Time_Saved_Percent.png
+│   ├── 05_Bar_Chart_Heavy_Workloads.png
+│   └── CPU_Utilization.png
 ├── build/                            # Compiled binaries (run_main, run_benchmark)
 ├── src/
 │   └── app/                          # Core C++ source code
