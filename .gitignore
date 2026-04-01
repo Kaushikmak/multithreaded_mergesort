@@ -12,7 +12,6 @@ __pycache__/
 *.pyc
 *.pyo
 
-web/
 
 benchmarking/results/csv/*
 benchmarking/results/png/*

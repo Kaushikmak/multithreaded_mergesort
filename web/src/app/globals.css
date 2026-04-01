@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/...');  /* ← first */
+@import "tailwindcss";                             /* ← second */
+
+:root {
+  --bg: #050505;
+  --surface: #0d0d0d;
+  --surface2: #141414;
+  --border: #1e1e1e;
+  --border-bright: #2a2a2a;
+  --text: #e8e8e8;
+  --muted: #555;
+  --accent: #00ff88;
+  --accent2: #ff6b35;
+  --accent3: #3b82f6;
+  --warn: #f59e0b;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Glowing accent text */
+.glow-green { 
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(0,255,136,0.5), 0 0 60px rgba(0,255,136,0.15);
+}
+.glow-orange {
+  color: var(--accent2);
+  text-shadow: 0 0 20px rgba(255,107,53,0.5);
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border-bright); }
+
+/* Accent card */
+.card-accent {
+  background: var(--surface);
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0,255,136,0.03);
+}
+
+/* Terminal block */
+.terminal {
+  background: #070707;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.terminal-bar {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(5,5,5,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+.badge-green {
+  background: rgba(0,255,136,0.07);
+  border: 1px solid rgba(0,255,136,0.2);
+  color: var(--accent);
+}
+.badge-orange {
+  background: rgba(255,107,53,0.07);
+  border: 1px solid rgba(255,107,53,0.2);
+  color: var(--accent2);
+}
+.badge-blue {
+  background: rgba(59,130,246,0.07);
+  border: 1px solid rgba(59,130,246,0.2);
+  color: var(--accent3);
+}
+
+/* Stat block */
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+/* Code highlight */
+.code-block {
+  background: #070707;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+.token-keyword { color: #c792ea; }
+.token-fn      { color: #82aaff; }
+.token-type    { color: #ffcb6b; }
+.token-str     { color: #c3e88d; }
+.token-comment { color: #546e7a; font-style: italic; }
+.token-num     { color: #f78c6c; }
+.token-macro   { color: var(--accent2); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(0,255,136,0); }
+}
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+.animate-fade-up-2 { animation: fadeUp 0.6s 0.15s ease both; }
+.animate-fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
+.cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: var(--accent);
+}
+.pulse-green { animation: pulse-green 2s infinite; }
+
+/* Section divider */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Tooltip */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #0d0d0d !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 6px !important;
+}
+
+/* Tab */
+.tab-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+  color: var(--muted);
+  background: transparent;
+}
+.tab-btn.active {
+  background: rgba(0,255,136,0.08);
+  border-color: rgba(0,255,136,0.2);
+  color: var(--accent);
+}
+.tab-btn:hover:not(.active) {
+  color: var(--text);
+  background: var(--surface2);
+}
