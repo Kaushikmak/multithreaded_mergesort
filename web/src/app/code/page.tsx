@@ -333,7 +333,7 @@ export default function CodePage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "260px 1fr" }}>
+    <div className="code-page-layout">
 
       {/* ── Sidebar ── */}
       <aside style={{

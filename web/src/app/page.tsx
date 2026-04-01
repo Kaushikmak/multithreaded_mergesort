@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { BarChart3, Code2 } from "lucide-react";
 
 const stats = [
   { value: "8.06×", label: "Peak Speedup", sub: "at 10M elements", color: "var(--accent)" },
@@ -197,7 +198,7 @@ export default function HomePage() {
             <div className="card-accent" style={{ padding: '36px 32px', cursor: 'pointer', transition: 'transform 0.2s', borderRadius: 8 }}
               onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'none')}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>📊</div>
+              <div style={{ fontSize: 32, marginBottom: 16 }}><BarChart3 size={32} strokeWidth={1.5} /></div>
               <h3 className="font-display" style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', marginBottom: 8 }}>Interactive Charts</h3>
               <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Explore 6 interactive visualizations — speedup curves, cache behavior, CPU utilization, and chunk-size optimization.</p>
             </div>
@@ -206,7 +207,7 @@ export default function HomePage() {
             <div className="card" style={{ padding: '36px 32px', cursor: 'pointer', transition: 'transform 0.2s', borderRadius: 8 }}
               onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'none')}>
-              <div style={{ fontSize: 32, marginBottom: 16 }}>⚙️</div>
+              <div style={{ fontSize: 32, marginBottom: 16 }}><Code2 size={32} strokeWidth={1.5} /></div>
               <h3 className="font-display" style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent2)', marginBottom: 8 }}>Code Walkthrough</h3>
               <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>Annotated C++ source code explaining the concurrency model, threshold tuning, cache optimization, and telemetry integration.</p>
             </div>

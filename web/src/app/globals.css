@@ -110,9 +110,10 @@ nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(5,5,5,0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(5, 5, 5, 0.65); /* Increased transparency */
+  backdrop-filter: blur(16px) saturate(180%); /* Added saturation for vibrancy */
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Softer border */
 }
 
 /* Badge */
@@ -233,4 +234,24 @@ nav {
 .tab-btn:hover:not(.active) {
   color: var(--text);
   background: var(--surface2);
+}
+
+.code-page-layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+}
+
+@media (max-width: 768px) {
+  .code-page-layout {
+    grid-template-columns: 1fr; /* Stacks the sidebar on top of the code */
+  }
+  
+  .code-page-layout aside {
+    position: static !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0 !important;
+  }
 }
