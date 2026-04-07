@@ -67,7 +67,7 @@ export default function HomePage() {
           </p>
 
           <div className="animate-fade-up-3" style={{ marginTop: 40, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <Link href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank" style={{
+            <Link href="/benchmarks"  style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'var(--accent)', color: '#000',
               padding: '12px 24px', borderRadius: 6,
